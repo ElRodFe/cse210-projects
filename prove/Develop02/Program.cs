@@ -1,14 +1,73 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Prompt questions = new Prompt();
-        questions._prompts.Add("Who was the most interesting person I interacted with today?");
-        questions._prompts.Add("What was the best part of my day?");
-        questions._prompts.Add("How did I see the hand of the Lord in my life today?");
-        questions._prompts.Add("What was the strongest emotion I felt today?");
-        questions._prompts.Add("If I had one thing I could do over today, what would it be?");
+        Console.WriteLine("Welcome to your Journal");
+        Console.WriteLine();
+
+        int userChoice = 0;
+        Journal theJournal = new Journal();
+
+        while(userChoice != 5){
+
+        Console.WriteLine("Please select an option: ");
+        Console.WriteLine("1- New Entry");
+        Console.WriteLine("2- Display Journal");
+        Console.WriteLine("3- Save Journal");
+        Console.WriteLine("4- Load Journal");
+        Console.WriteLine("5- Exit");
+
+        Console.Write(">");
+        userChoice = int.Parse(Console.ReadLine());
+        Console.WriteLine();
+
+        
+
+        if (userChoice == 1) {
+            theJournal.NewEntry();
+            Console.WriteLine();
+        }
+
+        else if (userChoice == 2) {
+            theJournal.DisplayEntries();
+            Console.WriteLine();
+        }
+
+        else if (userChoice == 3) {
+            Console.WriteLine("Write a name for your Journal file: ");
+            string fileName = Console.ReadLine();
+            Console.WriteLine("File saved successfully");
+
+            theJournal.SaveFile(fileName);
+            Console.WriteLine();
+        }
+
+        else if (userChoice == 4) {
+            Console.WriteLine("Write the filename to open: ");
+            string fileName = Console.ReadLine();
+
+            Console.WriteLine("Reading file...");
+            Console.WriteLine();
+
+            theJournal.LoadFile(fileName);
+            Console.WriteLine();
+        }
+
+        else if (userChoice == 5) {
+            Environment.Exit(0);
+        }
+
+        else {
+            Console.WriteLine("Invalid choice, please select a valid one...");
+            Console.WriteLine();
+        }
+
+        }
+
     }
+
 }

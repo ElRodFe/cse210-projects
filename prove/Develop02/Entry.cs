@@ -1,10 +1,13 @@
 public class Entry
 {
-    public int _prompt;
+    public string _prompt;
     public string _response;
 
-    public void CreateEntry()
-    {
+    public string _currentTime;
 
+    public void DisplayEntry() 
+    {
+        Console.WriteLine($"{_currentTime} | {_prompt} | {_response}");
+        
     }
 }
