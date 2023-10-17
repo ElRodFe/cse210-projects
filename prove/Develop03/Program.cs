@@ -9,7 +9,9 @@ class Program
         string book = "Ether";
         int chapter = 12;
         int versicle = 6;
-        Scripture s1 = new Scripture(passage);
+
+        Word wordsList = new Word();
+        Scripture s1 = new Scripture(passage, wordsList);
         Reference r1 = new Reference(book, chapter, versicle);
         string userInput = "";
 

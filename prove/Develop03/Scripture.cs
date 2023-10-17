@@ -1,14 +1,14 @@
 public class Scripture
 {
     private string _passage;
-    private List<int> _hiddenWords;
     private List<string> _words;
+    private Word _wordsList;
 
-    public Scripture(string passage)
+    public Scripture(string passage, Word wordsList)
     {
         _passage = passage;
-        _hiddenWords =  new List<int>();
         _words = _passage.Split(" ").ToList();
+        _wordsList = wordsList;  
     }
 
     public void DisplayScripture()
@@ -18,7 +18,7 @@ public class Scripture
 
     public void HideWord()
     {
-        if (_hiddenWords.Count >= _words.Count) {
+        if (_wordsList.GetList().Count >= _words.Count) {
             Environment.Exit(0);
         }
 
@@ -26,9 +26,9 @@ public class Scripture
         int index; 
         do {
             index = rnd.Next(0, _words.Count());
-        } while (_hiddenWords.Contains(index));
+        } while (_wordsList.GetList().Contains(index));
 
-        _hiddenWords.Add(index);
+        _wordsList.SetToList(index);
         _words[index] = "_";
         _passage = string.Join(" ", _words);
 
