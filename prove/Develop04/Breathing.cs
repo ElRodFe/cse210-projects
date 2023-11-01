@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class BreathingActivity: Activity {
     public BreathingActivity() {
         _name = "Breathing Activity";
@@ -7,10 +9,13 @@ public class BreathingActivity: Activity {
     public void StartBreathing() {
         DisplayStartMsg();
         Console.WriteLine("");
-        DateTime startingTime = DateTime.Now;
-        DateTime finishingTime = startingTime.AddSeconds(_duration);
+        Stopwatch timer = new Stopwatch();
+        DisplaySpinner(5);
 
+
+        timer.Start();
         do {
+            Console.WriteLine();
             Console.Write("Breathe in...");
             for (int i = 4; i > 0; i--) {
                 Console.Write(i);
@@ -25,6 +30,12 @@ public class BreathingActivity: Activity {
                 Thread.Sleep(1000);
                 Console.Write("\b \b");
             }
-        } while (startingTime != finishingTime);
+        } while (timer.Elapsed.TotalSeconds < _duration);
+        timer.Stop();
+        Console.WriteLine();
+
+        DisplayEndMsg();
+        DisplaySpinner(3);
+        Console.WriteLine();
     }
 }
