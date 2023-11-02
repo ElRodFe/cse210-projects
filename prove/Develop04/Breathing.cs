@@ -8,7 +8,7 @@ public class BreathingActivity: Activity {
 
     public void StartBreathing() {
         DisplayStartMsg();
-        Console.WriteLine("");
+        Console.WriteLine();
         Stopwatch timer = new Stopwatch();
         DisplaySpinner(5);
 

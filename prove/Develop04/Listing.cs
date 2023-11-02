@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class ListingActivity: Activity {
     private List<string> _promptsList = new List<string>();
 
@@ -21,6 +23,26 @@ public class ListingActivity: Activity {
     }
 
     public void StartListing() {
+        DisplayStartMsg();
+        Console.WriteLine();
+        Stopwatch timer = new Stopwatch();
+        DisplaySpinner(5);
 
+        timer.Start();
+        GetPrompt();
+        DisplaySpinner(8);
+        int itemsEntered = 0;
+        do {
+            Console.ReadLine();
+            itemsEntered++;
+
+        } while (timer.Elapsed.TotalSeconds < _duration);
+        timer.Stop();
+        Console.WriteLine();
+        Console.Write($"You have listed {itemsEntered} items.");
+
+        DisplayEndMsg();
+        DisplaySpinner(3);
+        Console.WriteLine();
     }
 }

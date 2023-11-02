@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net.Http.Headers;
 
 public class ReflectionActivity: Activity {
@@ -47,6 +48,26 @@ public class ReflectionActivity: Activity {
     }
 
     public void StartReflecting() {
-        
+        DisplayStartMsg();
+        Console.WriteLine();
+        Stopwatch timer = new Stopwatch();
+        DisplaySpinner(5);
+
+        timer.Start();
+        GetRandomPrompt();
+        DisplaySpinner(8);
+        do {
+            Console.WriteLine();
+
+            GetRandomQuestion();
+            DisplaySpinner(10);
+
+        } while (timer.Elapsed.TotalSeconds < _duration);
+        timer.Stop();
+        Console.WriteLine();
+
+        DisplayEndMsg();
+        DisplaySpinner(3);
+        Console.WriteLine();
     }
 }
