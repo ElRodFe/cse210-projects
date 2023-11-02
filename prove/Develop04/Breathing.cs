@@ -7,6 +7,8 @@ public class BreathingActivity: Activity {
     }
 
     public void StartBreathing() {
+        //As you can see i used a timer object from Stopwatch class
+        // which is from a collection, is a way for me of trying new things.
         DisplayStartMsg();
         Console.WriteLine();
         Stopwatch timer = new Stopwatch();

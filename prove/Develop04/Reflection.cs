@@ -37,6 +37,8 @@ public class ReflectionActivity: Activity {
     }
 
     public void GetRandomQuestion() {
+        //With this lines of code the program should not
+        //print the same question twice.
         Random rnd = new Random();
         int index;
         do {
@@ -48,6 +50,8 @@ public class ReflectionActivity: Activity {
     }
 
     public void StartReflecting() {
+        //As you can see i used a timer object from Stopwatch class
+        // which is from a collection, is a way for me of trying new things.
         DisplayStartMsg();
         Console.WriteLine();
         Stopwatch timer = new Stopwatch();

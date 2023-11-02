@@ -28,6 +28,10 @@ public class Activity {
     }
 
     public void DisplaySpinner(int seconds) {
+        //I used some new (new for me) tools like CursorVisible, and the 
+        // variable maxStringLength for cleaning the spinner's string before
+        // printing a new one, it is a way for me of trying new things.
+        
         DateTime startTime = DateTime.Now;
         DateTime endTime = DateTime.Now.AddSeconds(seconds);
 
