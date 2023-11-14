@@ -6,6 +6,16 @@ public class EternalGoal: Goal {
     }
 
     public override void CreateGoal() {
+        Console.Write("What is the name of your goal?: ");
+        _name = Console.ReadLine();
+        Console.WriteLine();
+
+        Console.Write("Give a short description of it: ");
+        _description = Console.ReadLine();
+        Console.WriteLine();
+
+        Console.Write("How many point do you want to earn by completting the goal?: ");
+        _goalPoints = int.Parse(Console.ReadLine());
     
     }
 

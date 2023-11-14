@@ -1,5 +1,6 @@
 public class UserInterface {
     private string _fileName = "";
+    private List<Goal> _goalsList = new List<Goal>();
 
     public void SetFileName(string fileName) {
         _fileName = fileName;
@@ -29,14 +30,17 @@ public class UserInterface {
 
                 if (userChoice == "1") {
                     sG.CreateGoal();
+                    _goalsList.Add(sG);
                     Console.WriteLine();
                 }
-                else if (userChoice == "3") {
+                else if (userChoice == "2") {
                     eG.CreateGoal();
+                    _goalsList.Add(eG);
                     Console.WriteLine();
                 }
                 else if (userChoice == "3") {
                     cG.CreateGoal();
+                    _goalsList.Add(cG);
                     Console.WriteLine();
                 }
                 else {
@@ -45,7 +49,9 @@ public class UserInterface {
                 }
             }
             else if (userChoice == "2") {
-
+                foreach (Goal goal in _goalsList) {
+                    Console.WriteLine($"[ ] {goal.GetName()} | {goal.GetDescrpition()} | {goal.GetPoints()}");
+                }
             }
             else if (userChoice == "3") {
                 SaveFile();
