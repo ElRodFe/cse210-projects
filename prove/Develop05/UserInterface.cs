@@ -13,7 +13,7 @@ public class UserInterface {
     public void Menu() {
         SimpleGoal sG = new SimpleGoal("", "", 0);
         EternalGoal eG = new EternalGoal("", "", 0);
-        CheckListGoal cG = new CheckListGoal("", "", 0, 0);
+        CheckListGoal cG = new CheckListGoal("", "", 0, 0, 0);
 
         string userChoice = "";
         while (userChoice != "6") {
@@ -50,7 +50,12 @@ public class UserInterface {
             }
             else if (userChoice == "2") {
                 foreach (Goal goal in _goalsList) {
-                    Console.WriteLine($"[ ] {goal.GetName()} | {goal.GetDescrpition()} | {goal.GetPoints()}");
+                    if (goal is CheckListGoal gC) {
+                        Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()} | Times to complete: {gC.GetTimesCompleted()}/{gC.GetTimesToComplete()}");
+                    }
+                    else {
+                        Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()}");
+                    }
                 }
             }
             else if (userChoice == "3") {
