@@ -2,7 +2,7 @@ public abstract class Goal {
     protected string _name;
     protected string _description;
     protected int _goalPoints;
-    protected int _pointsEarned;
+    protected bool _completed = false;
 
     public string GetName() {
         return _name;
@@ -12,6 +12,9 @@ public abstract class Goal {
     }
     public int GetPoints() {
         return _goalPoints;
+    }
+    public bool GetCompleted() {
+        return _completed;
     }
     public abstract void CreateGoal();
     public abstract void RecordEvent();

@@ -1,12 +1,14 @@
 public class CheckListGoal: Goal {
     private int _timesToComplete;
     private int _timesCompleted;
-    public CheckListGoal(string name, string description, int goalPoints, int timesToComplete, int timesCompleted) {
+    private int _bonus;
+    public CheckListGoal(string name, string description, int goalPoints, int timesToComplete, int timesCompleted, int bonus) {
         _name = name;
         _description = description;
         _goalPoints = goalPoints;
         _timesToComplete = timesToComplete;
         _timesCompleted = timesCompleted;
+        _bonus = bonus;
     }
 
     public int GetTimesCompleted() {
@@ -14,6 +16,9 @@ public class CheckListGoal: Goal {
     }
     public int GetTimesToComplete() {
         return _timesToComplete;
+    }
+    public int GetBonus() {
+        return _bonus;
     }
 
     public override void CreateGoal() {
@@ -31,13 +36,21 @@ public class CheckListGoal: Goal {
 
         Console.Write("How many times does this goal needs to be completed for a bonus?: ");
         _timesToComplete = int.Parse(Console.ReadLine());
+        Console.WriteLine();
+
+        Console.Write("What is the bonus for completing the whole goal?: ");
+        _bonus = int.Parse(Console.ReadLine());
     }
 
     public override void RecordEvent() {
-    
+        _timesCompleted ++;
+        Console.WriteLine($"Congratulations, you have earned {_goalPoints} points!");
+        Console.WriteLine();
     }
 
     public override void CheckIfCompleted() {
-
+        if (_timesCompleted == _timesToComplete) {
+            _completed = true;
+        }
     }
 }

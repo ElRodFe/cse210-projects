@@ -1,5 +1,6 @@
 public class UserInterface {
     private string _fileName = "";
+    private int _totalPoints = 0;
     private List<Goal> _goalsList = new List<Goal>();
 
     public void SetFileName(string fileName) {
@@ -13,10 +14,12 @@ public class UserInterface {
     public void Menu() {
         SimpleGoal sG = new SimpleGoal("", "", 0);
         EternalGoal eG = new EternalGoal("", "", 0);
-        CheckListGoal cG = new CheckListGoal("", "", 0, 0, 0);
+        CheckListGoal cG = new CheckListGoal("", "", 0, 0, 0, 0);
 
         string userChoice = "";
         while (userChoice != "6") {
+            Console.WriteLine($"You have: {_totalPoints} points.");
+            Console.WriteLine();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("1. Create New Goal \n2. List Goals \n3. Save Goals \n4. Load Goals \n5. Record Event \n6. Quit");
             Console.Write("Select an option from the menu: ");
@@ -50,11 +53,21 @@ public class UserInterface {
             }
             else if (userChoice == "2") {
                 foreach (Goal goal in _goalsList) {
-                    if (goal is CheckListGoal gC) {
-                        Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()} | Times to complete: {gC.GetTimesCompleted()}/{gC.GetTimesToComplete()}");
+                    if (goal.GetCompleted() == true) {
+                        if (goal is CheckListGoal gC) {
+                            Console.WriteLine($"[X] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()} | Times to complete: {gC.GetTimesCompleted()}/{gC.GetTimesToComplete()}");
+                        }
+                        else {
+                            Console.WriteLine($"[X] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()}");
+                        }
                     }
-                    else {
-                        Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()}");
+                    else if (goal.GetCompleted() == false) {
+                        if (goal is CheckListGoal gC) {
+                        Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()} | Times to complete: {gC.GetTimesCompleted()}/{gC.GetTimesToComplete()}");
+                        }
+                        else {
+                            Console.WriteLine($"[ ] {goal.GetName()}: {goal.GetDescrpition()} | Points worth: {goal.GetPoints()}");
+                        }
                     }
                 }
             }
@@ -74,14 +87,24 @@ public class UserInterface {
 
                 if (userChoice == "1") {
                     sG.RecordEvent();
+                    _totalPoints += sG.GetPoints();
                     Console.WriteLine();
                 }
                 else if(userChoice == "2") {
                     eG.RecordEvent();
+                    _totalPoints += eG.GetPoints();
                     Console.WriteLine();
                 }
                 else if(userChoice == "3") {
                     cG.RecordEvent();
+                    cG.CheckIfCompleted();
+                    if (cG.GetCompleted() == true) {
+                        _totalPoints += cG.GetPoints();
+                        _totalPoints += cG.GetBonus();
+                    }
+                    else if (cG.GetCompleted() == false) {
+                        _totalPoints += cG.GetPoints();
+                    }
                     Console.WriteLine();
                 }
                 else {

@@ -20,7 +20,8 @@ public class EternalGoal: Goal {
     }
 
     public override void RecordEvent() {
-    
+        Console.WriteLine($"Congratulations, you have earned {_goalPoints} points!");
+        Console.WriteLine();
     }
 
     public override void CheckIfCompleted() {
