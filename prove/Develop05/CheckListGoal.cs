@@ -20,6 +20,15 @@ public class CheckListGoal: Goal {
     public int GetBonus() {
         return _bonus;
     }
+    public void SetTimesToComplete(int timesToComplete) {
+        _timesToComplete = timesToComplete;
+    }
+    public void SetTimesCompleted(int timesCompleted) {
+        _timesCompleted = timesCompleted;
+    }
+    public void SetBonus(int bonus) {
+        _bonus = bonus;
+    }
 
     public override void CreateGoal() {
         Console.Write("What is the name of your goal?: ");

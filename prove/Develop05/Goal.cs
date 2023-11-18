@@ -16,6 +16,18 @@ public abstract class Goal {
     public bool GetCompleted() {
         return _completed;
     }
+    public void SetName(string name) {
+        _name = name;
+    }
+    public void SetDescription(string description) {
+        _description = description;
+    }
+    public void SetGoalPoints(int goalpoints) {
+        _goalPoints = goalpoints;
+    }
+    public void SetCompleted(bool completed) {
+        _completed = completed;
+    }
     public abstract void CreateGoal();
     public abstract void RecordEvent();
     public abstract void CheckIfCompleted();
