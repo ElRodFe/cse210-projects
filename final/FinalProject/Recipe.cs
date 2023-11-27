@@ -10,8 +10,10 @@ public class Recipe {
         int numberOfIngredients = 0;
         int i = 1;
         AddDifficultyLevel();
+        Console.WriteLine();
         Console.WriteLine("How many ingredients the recipe has?: ");
         numberOfIngredients = int.Parse(Console.ReadLine());
+        Console.WriteLine();
 
         while ( i <= numberOfIngredients) {
             Console.WriteLine($"Ingredient N° {i}");
@@ -47,12 +49,15 @@ public class Recipe {
 
             if (uC == "1") {
                 _difficultyLevel = new DifficultyLevel("Begginer", "For people who just started learning to cook");
+                break;
             }
             else if (uC == "2") {
                 _difficultyLevel = new DifficultyLevel("Intermediate", "For those who know how to cook");
+                break;
             }
             else if (uC == "3") {
                 _difficultyLevel = new DifficultyLevel("Advanced", "For those who really knows the art of cooking");
+                break;
             }
             else {
                 Console.WriteLine("Invalid Option.");
@@ -60,9 +65,6 @@ public class Recipe {
         }
     }
     public void RemoveRecipe() {
-
-    }
-    public void AddCategory() {
 
     }
     public void EditInstructions() {

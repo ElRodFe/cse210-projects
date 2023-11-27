@@ -9,6 +9,7 @@ public class Interface {
                 Console.WriteLine("1- Breakfast Recipe \n2- Lunch Recipe \n3- Dinner Recipe");
                 Console.Write("Select an option: ");
                 userChoice = Console.ReadLine();
+                Console.WriteLine();
                 switch (userChoice) {
                     case "1":
                     string bTitle = "";
@@ -16,7 +17,8 @@ public class Interface {
                         bTitle = Console.ReadLine();
                         BreakfastRecipe bR = new BreakfastRecipe(bTitle);
                         bR.AddRecipe();
-                        _listOfRecipes.Add(bR);                     
+                        _listOfRecipes.Add(bR);
+                        Console.WriteLine();                   
                         break;
                     case "2":
                         string lTitle = "";
@@ -25,6 +27,7 @@ public class Interface {
                         LunchRecipe lR = new LunchRecipe(lTitle);
                         lR.AddRecipe();
                         _listOfRecipes.Add(lR);
+                        Console.WriteLine();
                         break;
                     case "3":
                         string dTitle = "";
@@ -33,12 +36,13 @@ public class Interface {
                         DinnerRecipe dR = new DinnerRecipe(dTitle);
                         dR.AddRecipe();
                         _listOfRecipes.Add(dR);
+                        Console.WriteLine();
                         break;
                 }
                 break;
             
             case "2":
-                
+
                 break;
         }
     }
