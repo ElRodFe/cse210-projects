@@ -21,6 +21,16 @@ public class Recipe {
             AddIngredient();
             i++;
         }
+        Console.WriteLine();
+
+        Console.WriteLine("Please enter the instructions for cooking");
+        Console.Write("Instructions: ");
+        _instructions = Console.ReadLine();
+        Console.WriteLine();
+
+        Console.Write("How many minutes does needs to be baking or freezing? (leave it empty if there's no need of it):");
+        _cookingTime = Console.ReadLine();
+
     }
     public void AddIngredient() {
         string ingredientName = "";
