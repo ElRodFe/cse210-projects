@@ -28,7 +28,7 @@ public class Recipe {
         _instructions = Console.ReadLine();
         Console.WriteLine();
 
-        Console.Write("How many minutes does needs to be baking or freezing? (leave it empty if there's no need of it):");
+        Console.Write("How many minutes needs to be baking or freezing? (leave it empty if there's no need of it): ");
         _cookingTime = Console.ReadLine();
 
     }
@@ -41,14 +41,13 @@ public class Recipe {
         Console.Write("What is it's unit of measurement?: ");
         unitOfMeasurement = Console.ReadLine();
 
-        double quantity = 0;
+        string quantity = "";
         Console.Write($"How many {unitOfMeasurement} will be needed?: ");
-        quantity = double.Parse(Console.ReadLine());
+        quantity = Console.ReadLine();
 
         Ingredient ingredient = new Ingredient(ingredientName, unitOfMeasurement, quantity);
         _ingredients.Add(ingredient);
-
-
+        Console.WriteLine();
     }
     public void AddDifficultyLevel() {
         string uC = "";
@@ -80,7 +79,16 @@ public class Recipe {
     public void EditInstructions() {
 
     }
-    public string DisplayDetails() {
-        return "";
+    public void DisplayDetails() {
+        Console.WriteLine($"Title: {_title}");
+        Console.WriteLine($"Category: {_categoryName}");
+        Console.WriteLine($"Difficulty Level: {_difficultyLevel.DisplayDetails()}");
+        Console.WriteLine("Ingredients:");
+        foreach (Ingredient ingredient in _ingredients) {
+            Console.WriteLine($"-{ingredient.DisplayDetails()}");
+        }
+        Console.WriteLine($"Baking or Freezing time: {_cookingTime}");
+        Console.WriteLine();
+        Console.WriteLine($"Instructions: {_instructions}");
     }
 }

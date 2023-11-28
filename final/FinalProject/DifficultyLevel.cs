@@ -8,6 +8,6 @@ public class DifficultyLevel {
     }
 
     public string DisplayDetails() {
-        return "";
+        return $"{_difficulty} ({_description})";
     }
 }

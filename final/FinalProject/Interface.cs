@@ -42,7 +42,31 @@ public class Interface {
                 break;
             
             case "2":
-
+                Console.WriteLine("Which category of recipes do you want to display?:");
+                Console.WriteLine("1- Breakfast Recipe \n2- Lunch Recipe \n3- Dinner Recipe");
+                Console.Write("Select an option: ");
+                userChoice = Console.ReadLine();
+                if (userChoice == "1") {
+                    foreach (Recipe recipe in _listOfRecipes) {
+                        if (recipe is BreakfastRecipe) {
+                            DisplayRecipe(recipe);
+                        }
+                    }
+                }
+                else if (userChoice == "2") {
+                    foreach (Recipe recipe in _listOfRecipes) {
+                        if (recipe is LunchRecipe) {
+                            DisplayRecipe(recipe);
+                        }
+                    }
+                }
+                else if (userChoice == "3") {
+                    foreach (Recipe recipe in _listOfRecipes) {
+                        if (recipe is DinnerRecipe) {
+                            DisplayRecipe(recipe);
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -52,8 +76,8 @@ public class Interface {
     public void LoadFile() {
 
     }
-    public void DisplayRecipe() {
-
-    }
-    
+    public void DisplayRecipe(Recipe recipeType) {
+        recipeType.DisplayDetails();
+        Console.WriteLine();
+        }
 }

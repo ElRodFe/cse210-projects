@@ -1,9 +1,9 @@
 public class Ingredient {
     private string _name;
     private string _unitOfMeasurement;
-    private double _quantity;
+    private string _quantity;
 
-    public Ingredient(string name, string unitOfMeasurement, double quantity){
+    public Ingredient(string name, string unitOfMeasurement, string quantity){
         _name = name;
         _unitOfMeasurement = unitOfMeasurement;
         _quantity = quantity;
@@ -13,7 +13,7 @@ public class Ingredient {
 
     }
     public string DisplayDetails(){
-        return "";
+        return $"{_quantity} {_unitOfMeasurement} of {_name}";
     }
 
 }
