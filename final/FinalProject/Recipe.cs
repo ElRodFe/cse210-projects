@@ -6,6 +6,13 @@ public class Recipe {
     protected string _cookingTime = "";
     protected DifficultyLevel _difficultyLevel = new DifficultyLevel("", "");
 
+    public string GetName() {
+        return _title;
+    }
+    public void SetInstructions(string newInstructions) {
+        _instructions = newInstructions;
+    }
+
     public void AddRecipe() {
         int numberOfIngredients = 0;
         int i = 1;
@@ -73,11 +80,13 @@ public class Recipe {
             }
         }
     }
-    public void RemoveRecipe() {
-
-    }
     public void EditInstructions() {
+        string newInstructions = "";
+        Console.WriteLine("Please enter the new instructions: ");
+        Console.Write("New Instructions: ");
+        newInstructions = Console.ReadLine();
 
+        SetInstructions(newInstructions);
     }
     public void DisplayDetails() {
         Console.WriteLine($"Title: {_title}");

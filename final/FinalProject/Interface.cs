@@ -1,3 +1,5 @@
+using System.ComponentModel.Design;
+
 public class Interface {
     private string _fileName = "";
     private List<Recipe> _listOfRecipes = new List<Recipe>();
@@ -67,6 +69,32 @@ public class Interface {
                         }
                     }
                 }
+                break;
+            
+            case "3":
+                int indexNumber = 1;
+                int uC = 0;
+                Console.WriteLine("Which recipe you want to edit?");
+                foreach (Recipe recipe in _listOfRecipes) {
+                    Console.WriteLine($"{indexNumber}- {recipe.GetName()}");
+                    indexNumber ++;
+                }
+                Console.Write("Select an option: ");
+                uC = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                int selectedRecipeIndex = uC - 1;
+
+                Console.WriteLine("What you want to do?");
+                Console.WriteLine("1- Edit Instructions \n2- Delete Recipe");
+                Console.WriteLine("Select an option: ");
+                userChoice = Console.ReadLine();
+                if (userChoice == "1") {
+                    _listOfRecipes[selectedRecipeIndex].EditInstructions();
+                }
+                else if (userChoice == "2") {
+                    _listOfRecipes.RemoveAt(selectedRecipeIndex);
+                }
+                Console.WriteLine();
                 break;
         }
     }
