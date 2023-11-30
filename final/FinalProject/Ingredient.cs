@@ -15,5 +15,4 @@ public class Ingredient {
     public string DisplayDetails(){
         return $"{_quantity} {_unitOfMeasurement} of {_name}";
     }
-
 }

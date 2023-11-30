@@ -1,4 +1,5 @@
 using System.ComponentModel.Design;
+using System.Text.Json;
 
 public class Interface {
     private string _fileName = "";
@@ -96,10 +97,21 @@ public class Interface {
                 }
                 Console.WriteLine();
                 break;
+            
+            case "4":
+                Console.Write("What is the name for the file? (example: myrecipes.json): ");
+                _fileName = Console.ReadLine();
+
+                SaveFile();
+                break;
         }
     }
     public void SaveFile() {
+        string jSonString = JsonSerializer.Serialize(_listOfRecipes);
+        File.WriteAllText(_fileName, jSonString);
 
+        Console.WriteLine("File Saved.");
+        Console.WriteLine();
     }
     public void LoadFile() {
 
