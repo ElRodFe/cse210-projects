@@ -6,11 +6,27 @@ public class Recipe {
     protected string _cookingTime = "";
     protected DifficultyLevel _difficultyLevel = new DifficultyLevel("", "");
 
-    public string GetName() {
-        return _title;
-    }
-    public void SetInstructions(string newInstructions) {
-        _instructions = newInstructions;
+    // Getters:
+    public string GetName() {return _title;}
+    public string GetCategoryName() {return _categoryName;}
+    public List<Ingredient> GetIngredients() {return _ingredients;}
+    public string GetInstructions() {return _instructions;}
+    public string GetCookingTime() {return _cookingTime;}
+    public string GetDifficultyLevel() {return _difficultyLevel.DisplayDetails();}
+
+    // Setters:
+    public void SetTitle(string title) {_title = title;}
+    public void SetCategoryName(string categoryName) {_categoryName = categoryName;}
+    
+    public void SetIngredients(string name, string unitOfMeasurement, string quantity) {
+        _ingredients = new List<Ingredient>();
+        Ingredient newIngredient = new Ingredient(name, unitOfMeasurement, quantity);
+        _ingredients.Add(newIngredient);
+    } 
+    public void SetInstructions(string newInstructions) {_instructions = newInstructions;}
+    public void SetCookingTime(string cookingTime) {_cookingTime = cookingTime;}
+    public void SetDifficultyLevel(string difficulty, string description) {
+        _difficultyLevel = new DifficultyLevel(difficulty, description);
     }
 
     public void AddRecipe() {
@@ -59,7 +75,7 @@ public class Recipe {
     public void AddDifficultyLevel() {
         string uC = "";
         while (uC != "1" || uC != "2" || uC != "3") {
-            Console.WriteLine("What is the difficulty level for ths recipe?: ");
+            Console.WriteLine("What is the difficulty level for the recipe?: ");
             Console.WriteLine("1- Begginer \n2- Intermediate \n3- Advanced");
             uC = Console.ReadLine();
 

@@ -1,6 +1,6 @@
-using System.ComponentModel.Design;
-using System.Text.Json;
-
+using System;
+using System.Collections.Generic;
+using System.IO;
 public class Interface {
     private string _fileName = "";
     private List<Recipe> _listOfRecipes = new List<Recipe>();
@@ -49,6 +49,7 @@ public class Interface {
                 Console.WriteLine("1- Breakfast Recipe \n2- Lunch Recipe \n3- Dinner Recipe");
                 Console.Write("Select an option: ");
                 userChoice = Console.ReadLine();
+                Console.WriteLine();
                 if (userChoice == "1") {
                     foreach (Recipe recipe in _listOfRecipes) {
                         if (recipe is BreakfastRecipe) {
@@ -99,19 +100,18 @@ public class Interface {
                 break;
             
             case "4":
-                Console.Write("What is the name for the file? (example: myrecipes.json): ");
-                _fileName = Console.ReadLine();
-
                 SaveFile();
                 break;
         }
     }
     public void SaveFile() {
-        string jSonString = JsonSerializer.Serialize(_listOfRecipes);
-        File.WriteAllText(_fileName, jSonString);
-
-        Console.WriteLine("File Saved.");
+        Console.Write("What is the name for the file? (example: myrecipes.json): ");
+        _fileName = Console.ReadLine();
         Console.WriteLine();
+
+        SerializeToFile(_listOfRecipes);
+        Console.WriteLine($"File saved to {_fileName}");
+
     }
     public void LoadFile() {
 
@@ -120,4 +120,12 @@ public class Interface {
         recipeType.DisplayDetails();
         Console.WriteLine();
         }
+    public void SerializeToFile(List<Recipe> data) {
+        
+        using (StreamWriter writer = new StreamWriter(_fileName)) {
+            foreach (Recipe recipe in data) {
+                writer.WriteLine($"");
+            }
+        }
+    }
 }
