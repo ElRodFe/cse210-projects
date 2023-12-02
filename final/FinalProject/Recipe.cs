@@ -7,7 +7,7 @@ public class Recipe {
     protected DifficultyLevel _difficultyLevel = new DifficultyLevel("", "");
 
     // Getters:
-    public string GetName() {return _title;}
+    public string GetTitle() {return _title;}
     public string GetCategoryName() {return _categoryName;}
     public List<Ingredient> GetIngredients() {return _ingredients;}
     public string GetInstructions() {return _instructions;}

@@ -78,7 +78,7 @@ public class Interface {
                 int uC = 0;
                 Console.WriteLine("Which recipe you want to edit?");
                 foreach (Recipe recipe in _listOfRecipes) {
-                    Console.WriteLine($"{indexNumber}- {recipe.GetName()}");
+                    Console.WriteLine($"{indexNumber}- {recipe.GetTitle()}");
                     indexNumber ++;
                 }
                 Console.Write("Select an option: ");
@@ -124,7 +124,18 @@ public class Interface {
         
         using (StreamWriter writer = new StreamWriter(_fileName)) {
             foreach (Recipe recipe in data) {
-                writer.WriteLine($"");
+                writer.WriteLine($"Title: {recipe.GetTitle()}");
+                writer.WriteLine($"Category: {recipe.GetCategoryName()}");
+                writer.WriteLine($"Difficulty Level: {recipe.GetDifficultyLevel()}");
+                writer.WriteLine($"Cooking Time: {recipe.GetCookingTime()}");
+                writer.WriteLine($"Instructions: {recipe.GetInstructions()}");
+                
+                writer.WriteLine("Ingredients:");
+                foreach (Ingredient ingredient in recipe.GetIngredients()) {
+                    writer.WriteLine($"{ingredient.DisplayDetails()}");
+                }
+
+                writer.WriteLine(new string ('-', 30));
             }
         }
     }

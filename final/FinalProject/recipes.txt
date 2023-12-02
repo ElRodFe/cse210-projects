@@ -1,0 +1,19 @@
+Title: Chocolate Milk
+Category: Breakfast
+Difficulty Level: Begginer (For people who just started learning to cook)
+Cooking Time: System.Func`1[System.String]
+Instructions: System.Func`1[System.String]
+Ingredients:
+1 cup of Milk
+2 spoons of Chocolate
+3 tea spoons of Sugar
+------------------------------
+Title: Ice lemon cube
+Category: Lunch
+Difficulty Level: Begginer (For people who just started learning to cook)
+Cooking Time: System.Func`1[System.String]
+Instructions: System.Func`1[System.String]
+Ingredients:
+1 cubes of Water
+1  of Lemon
+------------------------------
