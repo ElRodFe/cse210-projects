@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 public class Interface {
     private string _fileName = "";
     private List<Recipe> _listOfRecipes = new List<Recipe>();
@@ -102,10 +105,13 @@ public class Interface {
             case "4":
                 SaveFile();
                 break;
+            case "5":
+                LoadFile();
+                break;
         }
     }
     public void SaveFile() {
-        Console.Write("What is the name for the file? (example: myrecipes.json): ");
+        Console.Write("What is the name for the file? (example: myrecipes.txt): ");
         _fileName = Console.ReadLine();
         Console.WriteLine();
 
@@ -114,6 +120,13 @@ public class Interface {
 
     }
     public void LoadFile() {
+        _listOfRecipes.Clear();
+        Console.Write("What is the name of the file? (example: myrecipes.txt): ");
+        _fileName = Console.ReadLine();
+        Console.WriteLine();
+
+        _listOfRecipes = DeserializeFromFile();
+        Console.WriteLine("File Loaded");
 
     }
     public void DisplayRecipe(Recipe recipeType) {
@@ -126,8 +139,8 @@ public class Interface {
             foreach (Recipe recipe in data) {
                 writer.WriteLine($"Title: {recipe.GetTitle()}");
                 writer.WriteLine($"Category: {recipe.GetCategoryName()}");
-                writer.WriteLine($"Difficulty Level: {recipe.GetDifficultyLevel()}");
-                writer.WriteLine($"Cooking Time: {recipe.GetCookingTime()}");
+                writer.WriteLine($"DifficultyLevel: {recipe.GetDifficultyLevel()}");
+                writer.WriteLine($"CookingTime: {recipe.GetCookingTime()}");
                 writer.WriteLine($"Instructions: {recipe.GetInstructions()}");
                 
                 writer.WriteLine("Ingredients:");
@@ -139,4 +152,72 @@ public class Interface {
             }
         }
     }
+    public List<Recipe> DeserializeFromFile() {
+        List<Recipe> recipes = new List<Recipe>();
+
+        using (StreamReader reader = new StreamReader(_fileName)) {
+            while(!reader.EndOfStream) {
+                string title = ReadValue(reader.ReadLine());
+                string category = ReadValue(reader.ReadLine());
+                string difficultyInfo = ReadValue(reader.ReadLine());
+                string cookingTime = ReadValue(reader.ReadLine());
+                string instructions = ReadValue(reader.ReadLine());
+
+                DifficultyLevel difficultyLevel = ParseDifficultyLevel(difficultyInfo);
+                List<Ingredient> ingredients = new List<Ingredient>();
+                string line;
+                while ((line = reader.ReadLine()) != new string('-', 30).ToString()) {
+                    if (line.Trim().Equals("Ingredients:", StringComparison.OrdinalIgnoreCase)){
+                        continue;
+                    }
+                    ingredients.Add(ParseIngredient(line));
+                }
+                
+                Recipe recipe; 
+                switch (category) {
+                    case "Breakfast":
+                        recipe = new BreakfastRecipe(title, ingredients, instructions, cookingTime, difficultyLevel);
+                        recipes.Add(recipe);
+                        break;
+                    case "Lunch":
+                        recipe = new LunchRecipe(title, ingredients, instructions, cookingTime, difficultyLevel);
+                        recipes.Add(recipe);
+                        break;
+                    case "Dinner":
+                        recipe = new DinnerRecipe(title, ingredients, instructions, cookingTime, difficultyLevel);
+                        recipes.Add(recipe);
+                        break;             
+                }
+            }
+
+            return recipes;
+        }
+    }
+    private string ReadValue(string line) {
+        return line.Split(':').LastOrDefault()?.Trim();
+    }
+
+    private Ingredient ParseIngredient(string line) {
+
+        string[] parts = line.Split(" ");
+        if (parts.Length >= 4) {
+            string quantity = parts[0];
+            string unitOfMeasurement = parts[1];
+            string name = string.Join(" ", parts.Skip(2));
+
+            return new Ingredient(name, unitOfMeasurement, quantity);
+        }
+        throw new FormatException($"Invalid ingredient format: {line}");
+    }
+
+    private DifficultyLevel ParseDifficultyLevel(string difficultyInfo) {
+        string[] parts = difficultyInfo.Split("(");
+        if (parts.Length == 2) {
+            string difficulty = parts[0].Trim();
+            string description = parts[1].Trim(' ', ')');
+            return new DifficultyLevel(difficulty, description);
+        }
+        throw new FormatException($"Invalid difficulty level format: {difficultyInfo}");
+    }
+        
 }

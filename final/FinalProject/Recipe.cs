@@ -105,6 +105,8 @@ public class Recipe {
         SetInstructions(newInstructions);
     }
     public void DisplayDetails() {
+        Console.Clear();
+        
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Category: {_categoryName}");
         Console.WriteLine($"Difficulty Level: {_difficultyLevel.DisplayDetails()}");
