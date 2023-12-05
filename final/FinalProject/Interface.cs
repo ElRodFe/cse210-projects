@@ -89,15 +89,19 @@ public class Interface {
                 Console.WriteLine();
                 int selectedRecipeIndex = uC - 1;
 
-                Console.WriteLine("What you want to do?");
-                Console.WriteLine("1- Edit Instructions \n2- Delete Recipe");
-                Console.WriteLine("Select an option: ");
-                userChoice = Console.ReadLine();
+                while (userChoice != "1" || userChoice != "2") {
+                    Console.WriteLine("What you want to do?");
+                    Console.WriteLine("1- Edit Instructions \n2- Delete Recipe");
+                    Console.WriteLine("Select an option: ");
+                    userChoice = Console.ReadLine();
                 if (userChoice == "1") {
                     _listOfRecipes[selectedRecipeIndex].EditInstructions();
+                    break;
                 }
                 else if (userChoice == "2") {
                     _listOfRecipes.RemoveAt(selectedRecipeIndex);
+                    break;
+                }
                 }
                 Console.WriteLine();
                 break;
@@ -125,9 +129,14 @@ public class Interface {
         _fileName = Console.ReadLine();
         Console.WriteLine();
 
-        _listOfRecipes = DeserializeFromFile();
-        Console.WriteLine("File Loaded");
-
+        if (File.Exists(_fileName)) {
+            _listOfRecipes = DeserializeFromFile();
+            Console.WriteLine("File Loaded");
+        }
+        else {
+            Console.WriteLine($"The file {_fileName} doesn't exist.");
+            LoadFile();
+        }
     }
     public void DisplayRecipe(Recipe recipeType) {
         recipeType.DisplayDetails();

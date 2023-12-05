@@ -1,19 +1,20 @@
 Title: Chocolate Milk
 Category: Breakfast
-Difficulty Level: Begginer (For people who just started learning to cook)
-Cooking Time: System.Func`1[System.String]
-Instructions: System.Func`1[System.String]
+DifficultyLevel: Begginer (For people who just started learning to cook)
+CookingTime: 
+Instructions: Mix the sugar and cacao in the cup and then slowly add the milk
 Ingredients:
-1 cup of Milk
-2 spoons of Chocolate
 3 tea spoons of Sugar
+2 spoons of Cacao chocolate
+1 cups of Milk
 ------------------------------
-Title: Ice lemon cube
+Title: Lemon juice
 Category: Lunch
-Difficulty Level: Begginer (For people who just started learning to cook)
-Cooking Time: System.Func`1[System.String]
-Instructions: System.Func`1[System.String]
+DifficultyLevel: Begginer (For people who just started learning to cook)
+CookingTime: 
+Instructions: Mix it all and drink
 Ingredients:
-1 cubes of Water
-1  of Lemon
+10 spoons of Sugar
+2  of Lemon
+0.5 L of water
 ------------------------------
